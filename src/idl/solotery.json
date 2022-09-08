@@ -1,0 +1,187 @@
+{
+  "version": "0.1.0",
+  "name": "solotery",
+  "instructions": [
+    {
+      "name": "createStake",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "ticket",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "from",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stake",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "chooseWinner",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "soloteryAuthority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "sendAmountToWinner",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "creatorPublickey",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "winnerPublickey",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "soloteryAuthority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "checkIt",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "SoLotery",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "bumpOriginal",
+            "type": "u8"
+          },
+          {
+            "name": "winnerPublickey",
+            "type": "publicKey"
+          },
+          {
+            "name": "chooseWinnerOnlyOneTime",
+            "type": "u8"
+          },
+          {
+            "name": "secureCheck",
+            "type": "i64"
+          },
+          {
+            "name": "players",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "JustOnce",
+      "msg": "The winner can only be chosen once"
+    },
+    {
+      "code": 6001,
+      "name": "YouAreNotSOLotery",
+      "msg": "You are not SOLotery key"
+    },
+    {
+      "code": 6002,
+      "name": "ThisIsNotTheWinner",
+      "msg": "This is not the winner"
+    },
+    {
+      "code": 6003,
+      "name": "WrongStake",
+      "msg": "This is not the stake account"
+    },
+    {
+      "code": 6004,
+      "name": "NoWinner",
+      "msg": "No winner has been chosen"
+    },
+    {
+      "code": 6005,
+      "name": "Limit",
+      "msg": "The player limit is 300"
+    },
+    {
+      "code": 6006,
+      "name": "IncorrectTimestamp",
+      "msg": "19:00 Argentine time"
+    }
+  ],
+  "metadata": {
+    "address": "FW4QsVmHJXHnD9xYURD18VFJPkanuhf9ygaJJZR8j6P5"
+  }
+}
