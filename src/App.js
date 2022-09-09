@@ -3,7 +3,7 @@ import * as buffer from "buffer";
 import { useEffect, useState } from 'react';
 import * as anchor from "@project-serum/anchor";
 import { Connection, clusterApiUrl, PublicKey, LAMPORTS_PER_SOL} from '@solana/web3.js'
-const idl = require('/mnt/c/Users/Mateo/test/src/idl/solotery.json');
+const idl = require('./idl/solotery.json');
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -34,12 +34,13 @@ const program = new anchor.Program(idl, programID, provider);
 
 function App() {
   window.Buffer = buffer.Buffer;
-  const [amount, setAmount] = useState(null)
-  const [players, setPlayers] = useState(null)
-  const [secureCheck, setSecureCheck] = useState(false)
-  const [bumporiginal, setBump] = useState(null)
-  const [winnerState, setWinner] = useState(null)
-  const [tx, setTx] = useState(false)
+  const [amount, setAmount] = useState(null);
+  const [players, setPlayers] = useState(null);
+  const [secureCheck, setSecureCheck] = useState(false);
+  const [bumporiginal, setBump] = useState(null);
+  const [winnerState, setWinner] = useState(null);
+  const [tx, setTx] = useState(null);
+  const [wallet, setWallet] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -52,12 +53,31 @@ function App() {
   async function state() {
     const Account = await program.account.soLotery.fetch(AccountPk);
     let balance = await connection.getBalance(AccountPk);
-    setAmount((balance / LAMPORTS_PER_SOL)- 0.06830544);
+    setAmount((balance / LAMPORTS_PER_SOL) - 0.06830544);
     setPlayers(Account.players.length);
     setSecureCheck(Account.secureCheck);
     setBump(Account.bumpOriginal);
     if (Account.chooseWinnerOnlyOneTime === 1) {setWinner("Choosed")} else {setWinner("No winner")}
   }
+  state();
+
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { solana } = window;
+      if (solana) {
+        if (solana.isPhantom) {
+          console.log('Phantom wallet found!');
+          const response = await solana.connect({ onlyIfTrusted: true });
+          console.log('Connected with Public Key:', response.publicKey.toString());
+          setWallet(response.publicKey.toString());
+        }
+      } else {
+        alert('Solana object not found! Get a Phantom Wallet 👻');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   async function ticket() {
     const tx = await program.methods.ticket().accounts({
@@ -66,40 +86,46 @@ function App() {
         stake: AccountPk,
         systemProgram: anchor.web3.SystemProgram.programId,
       }).rpc();
-      const Account = await program.account.soLotery.fetch(AccountPk);
-      let balance = await connection.getBalance(AccountPk);
-      setAmount((balance / LAMPORTS_PER_SOL)- 0.06830544);
-      setPlayers(Account.players.length);
-      setSecureCheck(Account.secureCheck);
-      setBump(Account.bumpOriginal);
-      if (Account.chooseWinnerOnlyOneTime === 1) {setWinner("Choosed")} else {setWinner("No winner")}
-      setTx(tx);
+      state();
     console.log('Transaction: ', tx)
-  }
-  async function getWallet() {
-    try {
-      const wallet = typeof window !== 'undefined' && window.solana;
-      await wallet.connect()
-    } catch (err) {
-      console.log('err: ', err)
-    }
+    setTx(tx);
   }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={getWallet}>getWallet</button>
+      <nav>
+        <div align="left">
+          <button onClick={state}>Refresh</button>
+        </div>
+      </nav>
+      <div className="App-header">
+        <button onClick={checkIfWalletIsConnected}>getWallet</button>
         <button onClick={ticket}>Take a Ticket</button>
-        <button onClick={state}>Refresh state</button>
-
-        <p>SOLotery PDA Account: {AccountPk.toString()}</p>
-        <p>Original bump PDA: {bumporiginal}</p>
-        <p>Total amount: {amount} SOL</p>
-        <p>Total tickets: {players}</p>
-        <p>Secure check: {secureCheck ? timeConverter(secureCheck) : null}</p>
-        <p>Winner State: {winnerState}</p>
-        <p>Last Tx: {tx}</p>
-      </header>
+        <div className="SOLotery">
+        <table width="300" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+          <tr>
+            <td><font color="white" face="arial, verdana, helvetica">
+          <b>SOLotery demo</b>
+            </font></td>
+          </tr>
+          <tr>
+            <td bgcolor="white">
+            <font face="arial, verdana, helvetica" color="black">
+              <p>SOLotery PDA Account: {AccountPk.toString()}</p>
+              <p>Original bump PDA: {bumporiginal}</p>
+              <p>Total amount: {amount} SOL</p>
+              <p>Total tickets: {players}</p>
+              <p>Secure check: {secureCheck ? timeConverter(secureCheck) : null}</p>
+              <p>Winner State: {winnerState}</p>
+            </font>
+            </td>
+          </tr>
+          </table>
+        </div>
+        <div className="SOLotery">
+          <p>Your last Tx: {tx}</p>
+        </div>
+      </div>
     </div>
   );
 }

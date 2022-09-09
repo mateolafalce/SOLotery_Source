@@ -90,22 +90,6 @@
         }
       ],
       "args": []
-    },
-    {
-      "name": "checkIt",
-      "accounts": [
-        {
-          "name": "solotery",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "user",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
     }
   ],
   "accounts": [
@@ -182,6 +166,6 @@
     }
   ],
   "metadata": {
-    "address": "FW4QsVmHJXHnD9xYURD18VFJPkanuhf9ygaJJZR8j6P5"
+    "address": "7hAdqnGKHeagVQaZ8mfUdVhJLFeLi3Cw87mwDf9UKcjf"
   }
 }
