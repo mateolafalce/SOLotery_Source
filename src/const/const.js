@@ -5,7 +5,6 @@ const idl = require('../idl/solotery.json');
 export const opts = {
     preflightCommitment: "recent",
   };
-  
   export const programID = new PublicKey("7hAdqnGKHeagVQaZ8mfUdVhJLFeLi3Cw87mwDf9UKcjf");
   export const AccountPk = new PublicKey("GLT2e7e8YffzWqibVDA8Wyjw8Ls2aVgo5N62uZN27VLt");
   export const wallet = window.solana;
