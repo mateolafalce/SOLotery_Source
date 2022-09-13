@@ -58,6 +58,7 @@ function App() {
     console.log('Transaction: ', tx)
     setTx(tx);
   }
+  
   const SOLotery = () => {
     return <div>
     <div align="left">
