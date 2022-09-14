@@ -22,6 +22,13 @@ function App() {
   const [owner5, setOwner5] = useState(null);
   const [owner6, setOwner6] = useState(null);
   const [owner7, setOwner7] = useState(null);
+  const [proposal1, setProposal1] = useState(null);
+  const [proposal2, setProposal2] = useState(null);
+  const [proposal3, setProposal3] = useState(null);
+  const [proposal4, setProposal4] = useState(null);
+  const [proposal5, setProposal5] = useState(null);
+  const [proposal6, setProposal6] = useState(null);
+  const [proposal7, setProposal7] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -40,6 +47,20 @@ function App() {
     setBump(Account.bumpOriginal);
     setAccount(Account.authority.toBase58());
     if (Account.chooseWinnerOnlyOneTime === 1) {setWinner("Choosed")} else {setWinner("No winner")}
+    setOwner1(Account.owner1.toBase58());
+    setOwner2(Account.owner2.toBase58());
+    setOwner3(Account.owner3.toBase58());
+    setOwner4(Account.owner4.toBase58());
+    setOwner5(Account.owner5.toBase58());
+    setOwner6(Account.owner6.toBase58());
+    setOwner7(Account.owner7.toBase58());
+    setProposal1((Account.bestProposal1 / LAMPORTS_PER_SOL));
+    setProposal2((Account.bestProposal2 / LAMPORTS_PER_SOL));
+    setProposal3((Account.bestProposal3 / LAMPORTS_PER_SOL));
+    setProposal4((Account.bestProposal4 / LAMPORTS_PER_SOL));
+    setProposal5((Account.bestProposal5 / LAMPORTS_PER_SOL));
+    setProposal6((Account.bestProposal6 / LAMPORTS_PER_SOL));
+    setProposal7((Account.bestProposal7 / LAMPORTS_PER_SOL));
   }
   useEffect(function () {
     state()
@@ -66,10 +87,10 @@ function App() {
     setTx(tx);
   }
 
-  async function buyShare() {
+  async function buyStock() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
     const tx = await data.program.methods.buyShare(
-      7,
+      1,
       new anchor.BN(6500)
     ).accounts({
       solotery: data.AccountPk,
@@ -120,34 +141,68 @@ function App() {
       <h1>
         SOLotery Dividends
       </h1>
-      <p>
-        Todos los dias hay un ganador.
-        Los dividendos criptograficos que proporciona SOLotery varia segun el pozo.
-        El ganador de la loteria se lleva el 98% del pozo. 
-        El otro 2% restante se reparte en el momento del envio del dinero entre los 8 accionsita de la loteria.
-        1 de las 8 partes se destina al mantenimiento del proyecto en blockchain. 
-        Y las restante 7 se comercializan aqui.
-        La mejor propuesta se queda con los dividendo y las ganancias.
-        Si tiene una mejor propuesta que la vigente, podra obtener un ingreso pasivo diario.
-      </p>
       <table width="300" cellSpacing="1" cellPadding="3" border="0" bgcolor="#1E679A"  align="center">
       <tbody>
         <td bgcolor="white">
         <font face="arial, verdana, helvetica" color="black">
         <p>SOLotery PDA Account: {data.AccountPk.toString()}</p>
         <p>Owner 1: {owner1}</p>
-        <p>Owner 2: {owner1}</p>
-        <p>Owner 3: {owner1}</p>
-        <p>Owner 4: {owner1}</p>
-        <p>Owner 5: {owner1}</p>
-        <p>Owner 6: {owner1}</p>
-        <p>Owner 7: {owner1}</p>
+        <p>Current proposal: {proposal1} SOL</p>
+        <button onClick={() => buyStock(1)}> compra un cripto dividendo diario</button>
+        <p>Owner 2: {owner2}</p>
+        <p>Current proposal: {proposal2} SOL</p>
+        <button onClick={() => buyStock(2)}> compra un cripto dividendo diario</button>
+        <p>Owner 3: {owner3}</p>
+        <p>Current proposal: {proposal3} SOL</p>
+        <button onClick={() => buyStock(3)}> compra un cripto dividendo diario</button>
+        <p>Owner 4: {owner4}</p>
+        <p>Current proposal: {proposal4} SOL</p>
+        <button onClick={() => buyStock(4)}> compra un cripto dividendo diario</button>
+        <p>Owner 5: {owner5}</p>
+        <p>Current proposal: {proposal5} SOL</p>
+        <button onClick={() => buyStock(5)}> compra un cripto dividendo diario</button>
+        <p>Owner 6: {owner6}</p>
+        <p>Current proposal: {proposal6} SOL</p>
+        <button onClick={() => buyStock(6)}> compra un cripto dividendo diario</button>
+        <p>Owner 7: {owner7}</p>
+        <p>Current proposal: {proposal7} SOL</p>
+        <button onClick={() => buyStock(7)}> compra un cripto dividendo diario</button>
         </font>
         </td>
       </tbody>
-      <button onClick={buyShare}> compra un cripto dividendo diario</button>
       </table>
 
+    </div>
+
+    <div>
+      <h1>
+        About SOLotery
+      </h1>
+      <h3>
+        Blockchain + lottery
+      </h3>
+        <p>
+          lorem
+        </p>
+      <h3>
+        Economics
+      </h3>
+        <p>
+          Todos los dias hay un ganador.
+          Los dividendos criptograficos que proporciona SOLotery varia segun el pozo.
+          El ganador de la loteria se lleva el 98% del pozo. 
+          El otro 2% restante se reparte en el momento del envio del dinero entre los 8 accionsita de la loteria.
+          1 de las 8 partes se destina al mantenimiento del proyecto en blockchain. 
+          Y las restante 7 se comercializan aqui.
+          La mejor propuesta se queda con los dividendo y las ganancias.
+          Si tiene una mejor propuesta que la vigente, podra obtener un ingreso pasivo diario.
+        </p>
+      <h3>
+        Contact
+      </h3>
+        <p>
+          lorem
+        </p>
     </div>
 
   </div></div>
