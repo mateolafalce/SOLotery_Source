@@ -15,6 +15,13 @@ function App() {
   const [winnerState, setWinner] = useState(null);
   const [tx, setTx] = useState(null);
   const [account, setAccount] = useState(null);
+  const [owner1, setOwner1] = useState(null);
+  const [owner2, setOwner2] = useState(null);
+  const [owner3, setOwner3] = useState(null);
+  const [owner4, setOwner4] = useState(null);
+  const [owner5, setOwner5] = useState(null);
+  const [owner6, setOwner6] = useState(null);
+  const [owner7, setOwner7] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -27,7 +34,7 @@ function App() {
   async function state() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
     let balance = await data.connection.getBalance(data.AccountPk);
-    setAmount((balance / LAMPORTS_PER_SOL) - 0.06830544);
+    setAmount((balance / LAMPORTS_PER_SOL));
     setPlayers(Account.players.length);
     setSecureCheck(Account.secureCheck);
     setBump(Account.bumpOriginal);
@@ -58,7 +65,23 @@ function App() {
     console.log('Transaction: ', tx)
     setTx(tx);
   }
-  
+
+  async function buyShare() {
+    const Account = await data.program.account.soLotery.fetch(data.AccountPk);
+    const tx = await data.program.methods.buyShare(
+      7,
+      new anchor.BN(6500)
+    ).accounts({
+      solotery: data.AccountPk,
+      from: data.wallet.publicKey,
+      creator: Account.authority,
+      systemProgram: anchor.web3.SystemProgram.programId,
+    }).rpc();
+      state();
+    console.log('Transaction: ', tx)
+    setTx(tx);
+  }
+
   const SOLotery = () => {
     return <div>
     <div align="left">
@@ -92,6 +115,41 @@ function App() {
     <div className="SOLotery">
       <p>Your last Tx: {tx}</p>
     </div>
+
+    <div>
+      <h1>
+        SOLotery Dividends
+      </h1>
+      <p>
+        Todos los dias hay un ganador.
+        Los dividendos criptograficos que proporciona SOLotery varia segun el pozo.
+        El ganador de la loteria se lleva el 98% del pozo. 
+        El otro 2% restante se reparte en el momento del envio del dinero entre los 8 accionsita de la loteria.
+        1 de las 8 partes se destina al mantenimiento del proyecto en blockchain. 
+        Y las restante 7 se comercializan aqui.
+        La mejor propuesta se queda con los dividendo y las ganancias.
+        Si tiene una mejor propuesta que la vigente, podra obtener un ingreso pasivo diario.
+      </p>
+      <table width="300" cellSpacing="1" cellPadding="3" border="0" bgcolor="#1E679A"  align="center">
+      <tbody>
+        <td bgcolor="white">
+        <font face="arial, verdana, helvetica" color="black">
+        <p>SOLotery PDA Account: {data.AccountPk.toString()}</p>
+        <p>Owner 1: {owner1}</p>
+        <p>Owner 2: {owner1}</p>
+        <p>Owner 3: {owner1}</p>
+        <p>Owner 4: {owner1}</p>
+        <p>Owner 5: {owner1}</p>
+        <p>Owner 6: {owner1}</p>
+        <p>Owner 7: {owner1}</p>
+        </font>
+        </td>
+      </tbody>
+      <button onClick={buyShare}> compra un cripto dividendo diario</button>
+      </table>
+
+    </div>
+
   </div></div>
   };
   return (

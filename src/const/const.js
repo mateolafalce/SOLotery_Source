@@ -5,8 +5,8 @@ const idl = require('../idl/solotery.json');
 export const opts = {
     preflightCommitment: "recent",
   };
-  export const programID = new PublicKey("7hAdqnGKHeagVQaZ8mfUdVhJLFeLi3Cw87mwDf9UKcjf");
-  export const AccountPk = new PublicKey("GLT2e7e8YffzWqibVDA8Wyjw8Ls2aVgo5N62uZN27VLt");
+  export const programID = new PublicKey("Ca8tecWTapYzeGfa8FvAMSo6JCheTRPvQhsjebZm56YE");
+  export const AccountPk = new PublicKey("83xetaZnC4n37AxTwzUZXFnH8swQCyo9aQ8cypZh8bfA");
   export const wallet = window.solana;
   export const network = clusterApiUrl("devnet");
   export const connection = new Connection(network, opts.preflightCommitment);

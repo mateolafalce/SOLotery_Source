@@ -50,6 +50,41 @@
       "args": []
     },
     {
+      "name": "buyShare",
+      "accounts": [
+        {
+          "name": "solotery",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "from",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "shareNumber",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
       "name": "chooseWinner",
       "accounts": [
         {
@@ -74,7 +109,42 @@
           "isSigner": false
         },
         {
-          "name": "creatorPublickey",
+          "name": "owner1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner2",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner3",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner4",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner5",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner6",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner7",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "creator",
           "isMut": true,
           "isSigner": false
         },
@@ -123,6 +193,62 @@
             "type": {
               "vec": "publicKey"
             }
+          },
+          {
+            "name": "owner1",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal1",
+            "type": "u64"
+          },
+          {
+            "name": "owner2",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal2",
+            "type": "u64"
+          },
+          {
+            "name": "owner3",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal3",
+            "type": "u64"
+          },
+          {
+            "name": "owner4",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal4",
+            "type": "u64"
+          },
+          {
+            "name": "owner5",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal5",
+            "type": "u64"
+          },
+          {
+            "name": "owner6",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal6",
+            "type": "u64"
+          },
+          {
+            "name": "owner7",
+            "type": "publicKey"
+          },
+          {
+            "name": "bestProposal7",
+            "type": "u64"
           }
         ]
       }
@@ -163,9 +289,19 @@
       "code": 6006,
       "name": "IncorrectTimestamp",
       "msg": "19:00 Argentine time"
+    },
+    {
+      "code": 6007,
+      "name": "OwnerError",
+      "msg": "You are not a owner"
+    },
+    {
+      "code": 6008,
+      "name": "AmountError",
+      "msg": "Your proposal is not superior to the existing one"
     }
   ],
   "metadata": {
-    "address": "7hAdqnGKHeagVQaZ8mfUdVhJLFeLi3Cw87mwDf9UKcjf"
+    "address": "Ca8tecWTapYzeGfa8FvAMSo6JCheTRPvQhsjebZm56YE"
   }
 }
