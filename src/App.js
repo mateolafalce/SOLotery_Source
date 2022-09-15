@@ -5,9 +5,17 @@ import { useEffect, useState } from 'react';
 import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 import  * as functions from "./functions/timeconverter.js";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom"
+import Main from './components/Main';
 
 function App() {
-  window.Buffer = buffer.Buffer;
+  /*
+window.Buffer = buffer.Buffer;
   const [amount, setAmount] = useState(null);
   const [players, setPlayers] = useState(null);
   const [secureCheck, setSecureCheck] = useState(false);
@@ -87,10 +95,10 @@ function App() {
     setTx(tx);
   }
 
-  async function buyStock() {
+  async function buyStock(number) {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
     const tx = await data.program.methods.buyShare(
-      1,
+      number,
       new anchor.BN(6500)
     ).accounts({
       solotery: data.AccountPk,
@@ -103,8 +111,7 @@ function App() {
     setTx(tx);
   }
 
-  const SOLotery = () => {
-    return <div>
+    return (<div>
     <div align="left">
       <button onClick={state}>Refresh</button>
     </div>
@@ -206,11 +213,13 @@ function App() {
     </div>
 
   </div></div>
-  };
+    );*/
   return (
-    <div className="App">
-      <SOLotery />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
