@@ -1,6 +1,6 @@
 import './App.css';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom"
@@ -10,13 +10,13 @@ import Exchange from './components/Exchange';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/" element={<Main />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

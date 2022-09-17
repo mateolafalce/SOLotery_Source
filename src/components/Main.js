@@ -6,6 +6,9 @@ import * as buffer from "buffer";
 import { useEffect, useState } from 'react';
 import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
+import {
+  NavLink
+} from "react-router-dom"
 
 export default function Main() {
   window.Buffer = buffer.Buffer;
@@ -62,9 +65,11 @@ export default function Main() {
   return (
   <div>
     <div className="App-header">
-    <div className="Refresh-button">
-        <button onClick={state}>Refresh</button>
-      </div>
+    <nav>
+    <NavLink to="/exchange">Exchange</NavLink>
+    <NavLink to="/about">About</NavLink>
+    <button onClick={state}>Refresh</button>
+    </nav>
       <button onClick={getWallet}>getWallet</button>
       <button onClick={ticket}>Take a Ticket</button>
       <div>

@@ -5,6 +5,9 @@ import * as data from "../const/const.js";
 import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 import * as buffer from "buffer";
+import {
+  NavLink
+} from "react-router-dom"
 
 export default function Exchange() {
 
@@ -79,17 +82,18 @@ window.Buffer = buffer.Buffer;
     setTx(tx);
   }
   return (
-    <div>
-    <div align="left">
-      <button onClick={state}>Refresh</button>
-    </div>
+    <div className="App-header">
+      <nav>
+      <NavLink to="/about">About</NavLink>
+      <NavLink to="/">SOLotery</NavLink>
+      <button align="left" onClick={state}>Refresh</button>
+     </nav>
     <button onClick={getWallet}>getWallet</button>
-
     <div>
+      <table cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
       <h1>
         SOLotery Dividends
       </h1>
-      <table>
       <tbody>
         <td bgcolor="white">
         <font face="arial, verdana, helvetica" color="black">

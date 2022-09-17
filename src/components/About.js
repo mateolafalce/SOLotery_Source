@@ -1,8 +1,15 @@
 import "../App.css";
+import {
+  NavLink
+} from "react-router-dom"
 
 export default function About() {
   return (
-<div>
+<div className="App-header">
+    <nav>
+    <NavLink to="/exchange">Exchange</NavLink>
+    <NavLink to="/">SOLotery</NavLink>
+    </nav>
       <h1>
         About SOLotery
       </h1>
@@ -12,7 +19,7 @@ export default function About() {
         <p>
           lorem
         </p>
-      <h3>
+      <h3 bgcolor="#1e9a64">
         Economics
       </h3>
         <p>
