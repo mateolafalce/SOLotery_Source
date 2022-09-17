@@ -27,7 +27,14 @@ window.Buffer = buffer.Buffer;
   const [proposal5, setProposal5] = useState(null);
   const [proposal6, setProposal6] = useState(null);
   const [proposal7, setProposal7] = useState(null);
-
+  const [amount1, setamount1] = useState(null);
+  const [amount2, setamount2] = useState(null);
+  const [amount3, setamount3] = useState(null);
+  const [amount4, setamount4] = useState(null);
+  const [amount5, setamount5] = useState(null);
+  const [amount6, setamount6] = useState(null);
+  const [amount7, setamount7] = useState(null);
+  
   useEffect(() => {
     window.solana.on("connect", () => {
       console.log('updated...')

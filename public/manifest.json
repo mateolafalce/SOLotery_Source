@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SOLotery",
+  "name": "A public lottery running on the Solana blockchain",
   "icons": [
     {
       "src": "favicon.ico",
