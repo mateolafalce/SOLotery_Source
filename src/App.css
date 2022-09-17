@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.table {
+  width: "300";
+  border-spacing: "1"; 
+  padding: "3"; 
+  border: "0"; 
+  background-color: "#1E679A";  
+  align-content: "center";
+}
+
+.Refresh-button {
+  align-content: "left";
+}

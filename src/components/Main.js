@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 import  * as functions from "../functions/timeconverter.js";
 import * as data from "../const/const.js"
 import * as buffer from "buffer";
@@ -59,15 +60,15 @@ export default function Main() {
     setTx(tx);
   }
   return (
-<div>
-      <div align="left">
+  <div>
+    <div className="App-header">
+    <div className="Refresh-button">
         <button onClick={state}>Refresh</button>
       </div>
-    <div className="App-header">
       <button onClick={getWallet}>getWallet</button>
       <button onClick={ticket}>Take a Ticket</button>
-      <div className="SOLotery">
-      <table width="300" cellSpacing="1" cellPadding="3" border="0" bgcolor="#1E679A">
+      <div>
+      <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
         <tbody>
         <tr>
           <td><font color="white" face="arial, verdana, helvetica">

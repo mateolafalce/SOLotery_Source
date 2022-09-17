@@ -1,4 +1,7 @@
+import "../App.css";
+
 export default function About() {
+  return (
 <div>
       <h1>
         About SOLotery
@@ -29,4 +32,5 @@ export default function About() {
           lorem
         </p>
     </div>
+  )
 }
