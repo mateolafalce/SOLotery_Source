@@ -1,5 +1,5 @@
 import React from "react";
-import "App.css";
+import "App.css"
 import  * as functions from "functions/timeconverter.js";
 import * as data from "const/const.js"
 import * as buffer from "buffer";
@@ -73,18 +73,23 @@ export default function Main() {
     setTx(tx);
   }
   return (
-  <div>
-    <div className="App-header">
-    <nav>
-    <NavLink to="/exchange">Exchange</NavLink>
-    <NavLink to="/about">About</NavLink>
-    <button onClick={state}>Refresh</button>
-    </nav>
+  <div className="App-bg">
+    <header>
+      <nav>
+        <ul>
+          <li><NavLink to="/">SOLotery</NavLink></li>
+          <li><NavLink to="/exchange">Exchange</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink><a>Manifiesto</a></NavLink></li>
+          <li><a target="_blank" href="https://github.com/mateolafalce/SOLotery_Source">Github</a></li>
+          <li><NavLink onClick={state}>Refresh</NavLink></li>
+        </ul>
+      </nav>
+    </header>
+      <div className="App-header">
       <button onClick={getWallet}>getWallet</button>
-      <button onClick={ticket}>Take a Ticket</button>
-      <div>
         <p>{windowAccount}</p>
-      <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
+          <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
         <tbody>
         <tr>
           <td><font color="white" face="arial, verdana, helvetica">
@@ -97,21 +102,19 @@ export default function Main() {
           <td bgcolor="white">
           <font face="arial, verdana, helvetica" color="black">
           <p>SOLotery PDA Account: {data.AccountPk.toString()}</p>
-          <p>Authority: {account}</p>
-          <p>Original bump PDA: {bumporiginal}</p>
           <p>Total amount: {amount} SOL</p>
           <p>Total tickets: {players}</p>
           <p>Secure check: {secureCheck ? functions.timeConverter(secureCheck) : null}</p>
           <p>Winner State: {winnerState}</p>
+          <button onClick={ticket}>Take a Ticket</button>
           </font>
           </td>
           </tr>
         </tbody>
         </table>
-      </div>
-      <div className="SOLotery">
-        <p>Your last Tx: {tx}</p>
-      </div>
+        <footer>
+            Your last Tx: {tx}
+        </footer>
     </div>
     </div>
   ); 

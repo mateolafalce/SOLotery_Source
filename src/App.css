@@ -15,7 +15,6 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,4 +45,47 @@
 }
 .About {
   background-color: "#1E679A";  
+}
+.nav {
+  float: right;
+}
+nav ul li {
+  list-style: none;
+  margin-left: 75px;
+  padding: 12px 0;
+  float: left;
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #1E679A;
+  font-weight: bold;
+}
+
+nav ul li a::before {
+  display: block;
+  content: '';
+  width: 0%;
+  background: #1E679A;
+  height: 5px;
+  top:0;
+  position: absolute;
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::before {
+  width: 100%;
+}
+
+header {
+  background: #ffffff;
+  width: 100%;
+  clear: both;
+  content:'';
+  display: table;
+}
+
+footer {
+  margin: 5.5%
 }

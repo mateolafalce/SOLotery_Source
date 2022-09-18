@@ -27,13 +27,6 @@ window.Buffer = buffer.Buffer;
   const [proposal5, setProposal5] = useState(null);
   const [proposal6, setProposal6] = useState(null);
   const [proposal7, setProposal7] = useState(null);
-  const [amount1, setamount1] = useState(null);
-  const [amount2, setamount2] = useState(null);
-  const [amount3, setamount3] = useState(null);
-  const [amount4, setamount4] = useState(null);
-  const [amount5, setamount5] = useState(null);
-  const [amount6, setamount6] = useState(null);
-  const [amount7, setamount7] = useState(null);
   
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -89,12 +82,20 @@ window.Buffer = buffer.Buffer;
     setTx(tx);
   }
   return (
-    <div className="App-header">
+    <div>
+    <header>
       <nav>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/">SOLotery</NavLink>
-      <button align="left" onClick={state}>Refresh</button>
-     </nav>
+        <ul>
+          <li><NavLink to="/">SOLotery</NavLink></li>
+          <li><NavLink to="/exchange">Exchange</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink><a>Manifiesto</a></NavLink></li>
+          <li><NavLink><a href="https://github.com/mateolafalce/SOLotery_Source">Github</a></NavLink></li>
+          <li><NavLink onClick={state}>Refresh</NavLink></li>
+        </ul>
+      </nav>
+    </header>
+    <div className="App-header">
     <button onClick={getWallet}>getWallet</button>
     <div>
       <table cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
@@ -131,6 +132,7 @@ window.Buffer = buffer.Buffer;
       </tbody>
       </table>
       <p>Your last Tx: {tx}</p>
+    </div>
     </div>
     </div>
     )

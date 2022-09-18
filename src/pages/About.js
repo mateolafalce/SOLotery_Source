@@ -5,11 +5,18 @@ import {
 
 export default function About() {
   return (
-<div className="App-header">
-    <nav>
-    <NavLink to="/exchange">Exchange</NavLink>
-    <NavLink to="/">SOLotery</NavLink>
-    </nav>
+  <div>
+    <header>
+      <nav>
+        <ul>
+          <li><NavLink to="/">SOLotery</NavLink></li>
+          <li><NavLink to="/exchange">Exchange</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink>Refresh</NavLink></li>
+        </ul>
+      </nav>
+    </header>
+    <div className="App-header">
       <h1>
         About SOLotery
       </h1>
@@ -38,6 +45,7 @@ export default function About() {
         <p>
           lorem
         </p>
+    </div>
     </div>
   )
 }
