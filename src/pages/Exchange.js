@@ -1,7 +1,7 @@
 import React from "react";
-import "../App.css";
+import "App.css";
 import { useEffect, useState } from 'react';
-import * as data from "../const/const.js";
+import * as data from "const/const.js";
 import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 import * as buffer from "buffer";

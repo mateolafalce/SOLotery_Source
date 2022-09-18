@@ -1,7 +1,7 @@
 import React from "react";
-import "../App.css";
-import  * as functions from "../functions/timeconverter.js";
-import * as data from "../const/const.js"
+import "App.css";
+import  * as functions from "functions/timeconverter.js";
+import * as data from "const/const.js"
 import * as buffer from "buffer";
 import { useEffect, useState } from 'react';
 import * as anchor from "@project-serum/anchor";
@@ -19,6 +19,7 @@ export default function Main() {
   const [winnerState, setWinner] = useState(null);
   const [tx, setTx] = useState(null);
   const [account, setAccount] = useState(null);
+  const [windowAccount, setWindowAccount] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -28,10 +29,19 @@ export default function Main() {
       window.solana.disconnect();
     }
   }, [])
+  function correctAmount(amount) {
+    let am = (amount / LAMPORTS_PER_SOL);
+    if (am < 0.076) {
+      setAmount(0);
+    } else {
+      setAmount((am - 0.0702542).toFixed(7));
+    }
+  }
   async function state() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
     let balance = await data.connection.getBalance(data.AccountPk);
-    setAmount((balance / LAMPORTS_PER_SOL));
+    //setAmount((balance / LAMPORTS_PER_SOL));
+    correctAmount(balance);
     setPlayers(Account.players.length);
     setSecureCheck(Account.secureCheck);
     setBump(Account.bumpOriginal);
@@ -46,11 +56,11 @@ export default function Main() {
     try {
       const wallet = typeof window !== 'undefined' && window.solana;
       await wallet.connect()
+      setWindowAccount(window.solana.publicKey.toBase58())
     } catch (err) {
       console.log('err: ', err)
     }
   }
-
   async function ticket() {
     const tx = await data.program.methods.ticket().accounts({
         solotery: data.AccountPk,
@@ -73,6 +83,7 @@ export default function Main() {
       <button onClick={getWallet}>getWallet</button>
       <button onClick={ticket}>Take a Ticket</button>
       <div>
+        <p>{windowAccount}</p>
       <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
         <tbody>
         <tr>

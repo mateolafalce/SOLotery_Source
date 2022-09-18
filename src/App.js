@@ -1,12 +1,12 @@
-import './App.css';
+import 'App.css';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom"
-import Main from './components/Main';
-import About from './components/About';
-import Exchange from './components/Exchange';
+import Main from 'pages/Main';
+import About from 'pages/About';
+import Exchange from 'pages/Exchange';
 
 function App() {
   return (
