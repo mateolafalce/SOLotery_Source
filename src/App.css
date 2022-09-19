@@ -35,7 +35,7 @@
     transform: rotate(360deg);
   }
 }
-.table {
+table {
   width: "300";
   border-spacing: "1"; 
   padding: "3"; 

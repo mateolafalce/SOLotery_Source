@@ -19,7 +19,6 @@ export default function Main() {
   const [winnerState, setWinner] = useState(null);
   const [tx, setTx] = useState(null);
   const [account, setAccount] = useState(null);
-  const [windowAccount, setWindowAccount] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -58,25 +57,22 @@ export default function Main() {
   useEffect(function () {
     getTx()
   }, [])
-  async function getWallet() {
+  async function ticket() {
     try {
       const wallet = typeof window !== 'undefined' && window.solana;
       await wallet.connect()
-      setWindowAccount(window.solana.publicKey.toBase58())
-    } catch (err) {
-      console.log('err: ', err)
-    }
-  }
-  async function ticket() {
-    const tx = await data.program.methods.ticket().accounts({
+      const tx = await data.program.methods.ticket().accounts({
         solotery: data.AccountPk,
-        from: data.wallet.publicKey,
+        from: window.solana.publicKey,
         stake: data.AccountPk,
         systemProgram: anchor.web3.SystemProgram.programId,
       }).rpc();
+      console.log('Transaction: ', tx)
+      setTx(tx)
       state();
-    console.log('Transaction: ', tx)
-    setTx(tx)
+    } catch (err) {
+      console.log('err: ', err)
+    }
   }
   return (
   <div className="App-bg">
@@ -92,15 +88,19 @@ export default function Main() {
         </ul>
       </nav>
     </header>
+
       <div className="App-header">
-      <button onClick={getWallet}>getWallet</button>
-        <p>{windowAccount}</p>
+      <div style={{color: '#282c34'}}>
+         <p>.</p>
+      </div>
           <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
         <tbody>
         <tr>
-          <td><font color="white" face="arial, verdana, helvetica">
+          <td>
+            <font color="white" face="arial, verdana, helvetica">
         <b>SOLotery demo</b>
-          </font></td>
+          </font>
+          </td>
           </tr>
         </tbody>
         <tbody>
@@ -118,6 +118,7 @@ export default function Main() {
           </tr>
         </tbody>
         </table>
+
         <footer>
             Last Transaction: {tx}
         </footer>
