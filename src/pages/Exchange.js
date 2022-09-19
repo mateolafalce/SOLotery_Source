@@ -86,11 +86,11 @@ window.Buffer = buffer.Buffer;
     <header>
       <nav>
         <ul>
-          <li><NavLink to="/">SOLotery</NavLink></li>
+        <li><NavLink to="/">SOLotery</NavLink></li>
           <li><NavLink to="/exchange">Exchange</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink><a>Manifiesto</a></NavLink></li>
-          <li><NavLink><a href="https://github.com/mateolafalce/SOLotery_Source">Github</a></NavLink></li>
+          <li><a target="_blank" href="https://github.com/mateolafalce/SOLotery_Source">Github</a></li>
           <li><NavLink onClick={state}>Refresh</NavLink></li>
         </ul>
       </nav>

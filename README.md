@@ -10,7 +10,7 @@ SOLotery is a dapp, developed with the purpose of clarifying the lottery busines
 
 ## Traceability
 
-Since everything is validated by blockchain, you can have a clear record of all transactions in daylight. All the source code of the program running on the block chain is available [here](https://github.com/mateolafalce/SOLotery/blob/main/lib.rs)
+Since everything is validated by blockchain, you can have a clear record of all transactions in daylight. All the source code of the program running on the blockchain is available [here](https://github.com/mateolafalce/SOLotery/blob/main/lib.rs)
 
 ## Security
 

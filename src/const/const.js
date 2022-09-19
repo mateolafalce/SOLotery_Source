@@ -10,6 +10,7 @@ export const opts = {
   export const wallet = window.solana;
   export const network = clusterApiUrl("devnet");
   export const connection = new Connection(network, opts.preflightCommitment);
+  export const connectiontx = new Connection(network);
   export const provider = new anchor.AnchorProvider(
     connection, wallet, opts.preflightCommitment,
   );

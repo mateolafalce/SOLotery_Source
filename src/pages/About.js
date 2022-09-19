@@ -12,6 +12,8 @@ export default function About() {
           <li><NavLink to="/">SOLotery</NavLink></li>
           <li><NavLink to="/exchange">Exchange</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink><a>Manifiesto</a></NavLink></li>
+          <li><a target="_blank" href="https://github.com/mateolafalce/SOLotery_Source">Github</a></li>
           <li><NavLink>Refresh</NavLink></li>
         </ul>
       </nav>

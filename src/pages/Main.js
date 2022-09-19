@@ -12,9 +12,9 @@ import {
 
 export default function Main() {
   window.Buffer = buffer.Buffer;
-  const [amount, setAmount] = useState(null);
-  const [players, setPlayers] = useState(null);
-  const [secureCheck, setSecureCheck] = useState(false);
+  const [amount, setAmount] = useState(0);
+  const [players, setPlayers] = useState(0);
+  const [secureCheck, setSecureCheck] = useState(null);
   const [bumporiginal, setBump] = useState(null);
   const [winnerState, setWinner] = useState(null);
   const [tx, setTx] = useState(null);
@@ -29,6 +29,7 @@ export default function Main() {
       window.solana.disconnect();
     }
   }, [])
+  
   function correctAmount(amount) {
     let am = (amount / LAMPORTS_PER_SOL);
     if (am < 0.076) {
@@ -37,10 +38,13 @@ export default function Main() {
       setAmount((am - 0.0702542).toFixed(7));
     }
   }
+  async function getTx() {
+    let tx = await data.connectiontx.getSignaturesForAddress(data.programID, { limit: 1 })
+    setTx(tx[0].signature);
+  }
   async function state() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
     let balance = await data.connection.getBalance(data.AccountPk);
-    //setAmount((balance / LAMPORTS_PER_SOL));
     correctAmount(balance);
     setPlayers(Account.players.length);
     setSecureCheck(Account.secureCheck);
@@ -51,7 +55,9 @@ export default function Main() {
   useEffect(function () {
     state()
   }, [])
-
+  useEffect(function () {
+    getTx()
+  }, [])
   async function getWallet() {
     try {
       const wallet = typeof window !== 'undefined' && window.solana;
@@ -70,7 +76,7 @@ export default function Main() {
       }).rpc();
       state();
     console.log('Transaction: ', tx)
-    setTx(tx);
+    setTx(tx)
   }
   return (
   <div className="App-bg">
@@ -103,7 +109,7 @@ export default function Main() {
           <font face="arial, verdana, helvetica" color="black">
           <p>SOLotery PDA Account: {data.AccountPk.toString()}</p>
           <p>Total amount: {amount} SOL</p>
-          <p>Total tickets: {players}</p>
+          <p>Tickets: {players}/300</p>
           <p>Secure check: {secureCheck ? functions.timeConverter(secureCheck) : null}</p>
           <p>Winner State: {winnerState}</p>
           <button onClick={ticket}>Take a Ticket</button>
@@ -113,7 +119,7 @@ export default function Main() {
         </tbody>
         </table>
         <footer>
-            Your last Tx: {tx}
+            Last Transaction: {tx}
         </footer>
     </div>
     </div>
