@@ -16,10 +16,10 @@ export default function Main() {
   const [amount, setAmount] = useState(0);
   const [players, setPlayers] = useState(0);
   const [secureCheck, setSecureCheck] = useState(null);
-  const [bumporiginal, setBump] = useState(null);
   const [winnerState, setWinner] = useState(null);
   const [tx, setTx] = useState(null);
   const [account, setAccount] = useState(null);
+  const [linkTx, seTLinkTx] = useState(null);
 
   useEffect(() => {
     window.solana.on("connect", () => {
@@ -39,8 +39,9 @@ export default function Main() {
     }
   }
   async function getTx() {
-    let tx = await data.connectiontx.getSignaturesForAddress(data.programID, { limit: 1 })
-    setTx(tx[0].signature);
+    let tx_ = await data.connectiontx.getSignaturesForAddress(data.programID, { limit: 1 })
+    setTx(tx_[0].signature);
+    seTLinkTx("https://explorer.solana.com/tx/".concat(tx).concat("?cluster=devnet"))
   }
   async function state() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
@@ -48,16 +49,17 @@ export default function Main() {
     correctAmount(balance);
     setPlayers(Account.players.length);
     setSecureCheck(Account.secureCheck);
-    setBump(Account.bumpOriginal);
     setAccount(Account.authority.toBase58());
     if (Account.chooseWinnerOnlyOneTime === 1) {setWinner("Choosed")} else {setWinner("No winner")}
   }
   useEffect(function () {
     state()
   }, [])
+
   useEffect(function () {
     getTx()
   }, [])
+
   async function ticket() {
     try {
       const wallet = typeof window !== 'undefined' && window.solana;
@@ -121,9 +123,8 @@ export default function Main() {
           </tr>
         </tbody>
         </table>
-
         <footer>
-            Last Transaction: {tx}
+            Last Transaction: <a target="_blank" href={linkTx}>{tx}</a>
         </footer>
     </div>
     </div>

@@ -54,7 +54,10 @@ window.Buffer = buffer.Buffer;
     setProposal7((Account.bestProposal7 / LAMPORTS_PER_SOL));
   }
   useEffect(function () {
-    state()
+    const getState = async () => {
+      await state()
+    }
+    getState()
   }, [])
   
   async function getWallet() {
