@@ -9,6 +9,7 @@ import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 import {
   NavLink
 } from "react-router-dom"
+import Phamton from 'const/phantom-ghost-white.png';
 
 export default function Main() {
   window.Buffer = buffer.Buffer;
@@ -112,7 +113,9 @@ export default function Main() {
           <p>Tickets: {players}/300</p>
           <p>Secure check: {secureCheck ? functions.timeConverter(secureCheck) : null}</p>
           <p>Winner State: {winnerState}</p>
-          <button onClick={ticket}>Take a Ticket</button>
+          <div className="PhamtonButton">
+            <button onClick={ticket}>0.00777777 SOL<img src={Phamton} width="50" ></img></button>
+          </div>
           </font>
           </td>
           </tr>

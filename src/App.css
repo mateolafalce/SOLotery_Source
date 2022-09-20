@@ -73,11 +73,9 @@ nav ul li a::before {
   position: absolute;
   transition: width 0.2s;
 }
-
 nav ul li a:hover::before {
   width: 100%;
 }
-
 header {
   background: #ffffff;
   width: 100%;
@@ -85,7 +83,27 @@ header {
   content:'';
   display: table;
 }
-
 footer {
   margin: 5.5%
+}
+/*.PhamtonButton {
+  border-radius: 15px;
+  width:80px;
+  height:19px;
+  padding: 25px 200px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}*/
+.PhamtonButton {
+  width: 50%;
+  height: 50%;
+  padding: 25px 200px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
