@@ -41,7 +41,7 @@ export default function Main() {
   async function getTx() {
     let tx_ = await data.connectiontx.getSignaturesForAddress(data.programID, { limit: 1 })
     setTx(tx_[0].signature);
-    seTLinkTx("https://explorer.solana.com/tx/".concat(tx).concat("?cluster=devnet"))
+    seTLinkTx("https://explorer.solana.com/tx/".concat(tx_[0].signature).concat("?cluster=devnet"))
   }
   async function state() {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
