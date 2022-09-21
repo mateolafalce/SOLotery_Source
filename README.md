@@ -25,4 +25,4 @@ But if we face a monopolist we are at his absolute mercy.
 
 ## Dividends
 
-Of the total amount that is sent to the winner, 2% remains and is distributed as royalties to all SOLotery owners. 7 parts are put up for sale from day one and the person who has the best proposal gets the divestments. Since there are only 7 dividends, the owners will have to be generous with their proposals, since the competition increases with greater equity in prices. The remaining property is to maintain the program on the blockchain and bear all transaction costs.
+Of the total amount that is sent to the winner, 2% remains and is distributed as royalties to all owners of SOLotery. 300 pieces are put up for sale from the first day and the one with the best proposal gets the dividends. Since there are only 300 dividends, the owners will have to be generous with their proposals, since the competition increases with more equity in the prices. 3 properties are intended to keep the program on the blockchain and bear all transaction costs.

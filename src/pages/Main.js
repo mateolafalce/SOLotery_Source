@@ -76,6 +76,16 @@ export default function Main() {
     } catch (err) {
       console.log('err: ', err)
     }
+    /*
+    <section>
+          <span><NavLink to="/">SOLotery</NavLink></span>
+          <span><NavLink to="/exchange">Exchange</NavLink></span>
+          <span><NavLink to="/about">About</NavLink></span>
+          <span><NavLink><a>Manifiesto</a></NavLink></span>
+          <span><a target="_blank" href="https://github.com/mateolafalce/SOLotery_Source">Github</a></span>
+          <span><NavLink onClick={state}>Refresh</NavLink></span>
+      </section>
+    */
   }
   return (
   <div className="App-bg">
@@ -92,11 +102,8 @@ export default function Main() {
       </nav>
     </header>
 
-      <div className="App-header">
-      <div style={{color: '#282c34'}}>
-         <p>.</p>
-      </div>
-          <table width="900" cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
+      <div className="App-Main">
+          <table className="DataTable" bgcolor="#1E679A">
         <tbody>
         <tr>
           <td>
