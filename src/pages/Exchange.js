@@ -27,7 +27,8 @@ window.Buffer = buffer.Buffer;
   const [proposal5, setProposal5] = useState(null);
   const [proposal6, setProposal6] = useState(null);
   const [proposal7, setProposal7] = useState(null);
-  
+  const [linkTx, seTLinkTx] = useState(null);
+
   useEffect(() => {
     window.solana.on("connect", () => {
       console.log('updated...')
@@ -59,30 +60,39 @@ window.Buffer = buffer.Buffer;
     }
     getState()
   }, [])
-  
-  async function getWallet() {
-    try {
-      const wallet = typeof window !== 'undefined' && window.solana;
-      await wallet.connect()
-    } catch (err) {
-      console.log('err: ', err)
-    }
+
+  useEffect(function () {
+    getTx()
+  }, [])
+
+  async function getTx() {
+    let tx_ = await data.connectiontx.getSignaturesForAddress(data.programID, { limit: 1 })
+    setTx(tx_[0].signature);
+    seTLinkTx("https://explorer.solana.com/tx/".concat(tx_[0].signature).concat("?cluster=devnet"))
   }
 
   async function buyStock(number) {
     const Account = await data.program.account.soLotery.fetch(data.AccountPk);
-    const tx = await data.program.methods.buyShare(
-      number,
-      new anchor.BN(6500)
-    ).accounts({
-      solotery: data.AccountPk,
-      from: data.wallet.publicKey,
-      creator: Account.authority,
-      systemProgram: anchor.web3.SystemProgram.programId,
-    }).rpc();
+    try {
+      const wallet = typeof window !== 'undefined' && window.solana;
+      await wallet.connect()
+      const tx = await data.program.methods.buyShare(
+        number,
+        new anchor.BN(6510)
+      )
+      .accounts({
+        solotery: data.AccountPk,
+        from: window.solana.publicKey,
+        creator: Account.authority,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      }).rpc();
+      console.log('Transaction: ', tx)
+      setTx(tx)
+      getTx()
       state();
-    console.log('Transaction: ', tx)
-    setTx(tx);
+    } catch (err) {
+      console.log('err: ', err)
+    }
   }
   return (
     <div>
@@ -98,8 +108,7 @@ window.Buffer = buffer.Buffer;
         </ul>
       </nav>
     </header>
-    <div className="App-header">
-    <button onClick={getWallet}>getWallet</button>
+    <div className="App-Main">
     <div>
       <table cellSpacing="1" cellPadding="3" bgcolor="#1E679A">
       <h1>
@@ -111,31 +120,33 @@ window.Buffer = buffer.Buffer;
         <p>SOLotery PDA Account: {data.AccountPk.toString()}</p>
         <p>Owner 1: {owner1}</p>
         <p>Current proposal: {proposal1} SOL</p>
-        <button onClick={() => buyStock(1)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(1)}> Buy a crypto dividend</button>
         <p>Owner 2: {owner2}</p>
         <p>Current proposal: {proposal2} SOL</p>
-        <button onClick={() => buyStock(2)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(2)}> Buy a crypto dividend</button>
         <p>Owner 3: {owner3}</p>
         <p>Current proposal: {proposal3} SOL</p>
-        <button onClick={() => buyStock(3)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(3)}> Buy a crypto dividend</button>
         <p>Owner 4: {owner4}</p>
         <p>Current proposal: {proposal4} SOL</p>
-        <button onClick={() => buyStock(4)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(4)}> Buy a crypto dividend</button>
         <p>Owner 5: {owner5}</p>
         <p>Current proposal: {proposal5} SOL</p>
-        <button onClick={() => buyStock(5)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(5)}> Buy a crypto dividend</button>
         <p>Owner 6: {owner6}</p>
         <p>Current proposal: {proposal6} SOL</p>
-        <button onClick={() => buyStock(6)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(6)}> Buy a crypto dividend</button>
         <p>Owner 7: {owner7}</p>
         <p>Current proposal: {proposal7} SOL</p>
-        <button onClick={() => buyStock(7)}> compra un cripto dividendo diario</button>
+        <button onClick={() => buyStock(7)}> Buy a crypto dividend</button>
         </font>
         </td>
       </tbody>
       </table>
-      <p>Your last Tx: {tx}</p>
     </div>
+    <footer>
+            Last Transaction: <a target="_blank" href={linkTx}>{tx}</a>
+        </footer>
     </div>
     </div>
     )
